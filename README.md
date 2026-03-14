@@ -2,10 +2,10 @@
 # Predictive Maintenance Project: Remaining Useful Life (RUL) Prediction
 
 ## Overview
-This project focuses on predicting the Remaining Useful Life (RUL) of aircraft engines using sensor data. We developed a machine learning model to forecast how many more operational cycles an engine can perform before failure. This helps in scheduling maintenance proactively, reducing downtime, and improving safety.
+This project focuses on predicting the Remaining Useful Life (RUL) of aircraft engines using sensor data. I developed a machine learning model to forecast how many more operational cycles an engine can perform before failure. This helps in scheduling maintenance proactively, reducing downtime, and improving safety.
 
 ## Dataset
-We used the NASA Commercial Modular Aero-Propulsion System Simulation (C-MAPSS) dataset, specifically the FD001 subset for initial model development, and then evaluated on FD001, FD002, FD003, and FD004. Each dataset contains multivariate time series from a fleet of engines, including operational settings and various sensor measurements.
+I used the NASA Commercial Modular Aero-Propulsion System Simulation (C-MAPSS) dataset, specifically the FD001 subset for initial model development, and then evaluated on FD001, FD002, FD003, and FD004. Each dataset contains multivariate time series from a fleet of engines, including operational settings and various sensor measurements.
 
 ## Project Steps
 
