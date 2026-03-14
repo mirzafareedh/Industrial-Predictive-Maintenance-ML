@@ -1,2 +1,37 @@
-# Industrial-Predictive-Maintenance-ML
-Predicting Remaining Useful Life (RUL) of turbofan engines using NASA C-MAPSS sensor data.
+
+# Predictive Maintenance Project: Remaining Useful Life (RUL) Prediction
+
+## Overview
+This project focuses on predicting the Remaining Useful Life (RUL) of aircraft engines using sensor data. We developed a machine learning model to forecast how many more operational cycles an engine can perform before failure. This helps in scheduling maintenance proactively, reducing downtime, and improving safety.
+
+## Dataset
+We used the NASA Commercial Modular Aero-Propulsion System Simulation (C-MAPSS) dataset, specifically the FD001 subset for initial model development, and then evaluated on FD001, FD002, FD003, and FD004. Each dataset contains multivariate time series from a fleet of engines, including operational settings and various sensor measurements.
+
+## Project Steps
+
+1.  **Data Loading & Initial Exploration:** Loaded `train_FD001.txt` and assigned clear column names based on the provided `readme.txt` description.
+2.  **RUL Calculation:** Calculated the RUL for each engine unit by subtracting the current cycle from its maximum observed cycle.
+3.  **Data Preprocessing:**
+    *   **Feature Cleaning:** Identified and removed constant (zero-variance) features such as `op_setting_3`, `sensor_18`, and `sensor_19` as they provide no useful information.
+    *   **Feature Scaling:** Applied `MinMaxScaler` to scale all operational settings and sensor measurements to a range between 0 and 1. This prevents features with larger numerical values from dominating the model.
+    *   **Data Split:** Divided the preprocessed data into features (X) and target (y).
+4.  **Model Training (Random Forest Regressor):**
+    *   An initial Random Forest Regressor model was trained, yielding an R-squared of 0.62.
+5.  **RUL Clipping for Improved Performance:**
+    *   To enhance prediction accuracy, the RUL target was clipped at a maximum of 125 cycles. This significantly improved model performance.
+    *   Retraining the model with clipped RUL resulted in:
+        *   **Mean Absolute Error (MAE): 13.60** (Improved from 29.62)
+        *   **Root Mean Squared Error (RMSE): 18.78** (Improved from 41.48)
+        *   **R-squared (R2): 0.79** (Improved from 0.62)
+6.  **Feature Importance Analysis:** Explored which sensors the Random Forest model considered most important for RUL prediction. `Sensor_11` was identified as the most critical feature.
+7.  **RUL Life-cycle Visualization:** Plotted the actual vs. predicted RUL for a sample engine unit to visually assess the model's tracking of degradation over time.
+8.  **Model Evaluation on Multiple Datasets:** Tested the model's generalization across all four FD datasets (FD001, FD002, FD003, FD004). The model performed well on FD001 and FD003 but showed lower generalization to FD002 and FD004, likely due to their more complex operating conditions as described in the dataset's original `readme.txt`.
+9.  **Model Saving:** Saved the trained Random Forest model (`turbine_pdm_model.pkl`) and the `MinMaxScaler` (`min_max_scaler.pkl`) for future use and deployment.
+
+## Conclusion
+This project successfully demonstrates a pipeline for RUL prediction using machine learning, highlighting the importance of data preprocessing and target clipping for robust performance. The feature importance analysis provides actionable insights into critical sensors for engine health monitoring.
+
+## Future Work
+*   Investigate strategies for improving generalization across diverse operating conditions (FD002, FD004).
+*   Explore advanced feature engineering techniques.
+*   Implement hyperparameter tuning for further model optimization.
